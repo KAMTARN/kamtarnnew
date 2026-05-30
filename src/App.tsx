@@ -80,10 +80,6 @@ export default function App() {
   };
 
   const cartTotalItems = cart.reduce((total, item) => total + item.quantity, 0);
-  const cartTotalPrice = cart.reduce((total, item) => {
-    const price = item.product.price;
-    return total + (price * item.quantity);
-  }, 0);
 
   // Trigger smooth scroll to section
   const handleNavigate = (sectionId: string) => {
@@ -103,20 +99,22 @@ export default function App() {
     }
   };
 
-  // Proceed Checkout handler
+  // Proceed Checkout handler to trigger email automatically
   const handleCheckout = () => {
     setIsCartOpen(false);
     
     // Create pre-filled message text automatically compiled from the cart
     const itemsText = cart
-      .map(item => `• ${item.product.brand} ${item.product.name} (Qty: ${item.quantity}) - ₹${(item.product.price * item.quantity).toLocaleString('en-IN')}`)
+      .map(item => `• ${item.product.brand} ${item.product.name} (Qty: ${item.quantity})`)
       .join('\n');
     
-    const formattedTotal = cartTotalPrice.toLocaleString('en-IN');
-    
-    const message = `Hello, I would like to request an official GST-compliant retail quotation & stock availability estimation for the following IT accessories and electronics items:\n\n${itemsText}\n\nEstimated Cart Total: ₹${formattedTotal}\n\nPlease check stock status at your showrooms and confirm pricing AMC option or delivery timelines. Thank you!`;
+    const message = `Hello Kamtarn Infocom sales team,\n\nI would like to request an official GST-compliant retail quotation and stock availability estimation for the following IT accessories and electronics items:\n\n${itemsText}\n\nPlease check stock status at your showrooms and confirm delivery timelines. Thank you!`;
     
     setPrefilledMessage(message);
+
+    // Auto trigger mail client
+    const mailtoUrl = `mailto:info@kamtarn.com?subject=${encodeURIComponent("Showroom Stock & Custom Quotation Inquiry")}&body=${encodeURIComponent(message)}`;
+    window.open(mailtoUrl, '_blank');
     
     // Smooth scroll to the contact form section
     setTimeout(() => {
@@ -254,8 +252,6 @@ export default function App() {
                   </div>
                 ) : (
                   cart.map((item, idx) => {
-                    const price = item.product.price;
-                    const subtotal = price * item.quantity;
                     return (
                       <motion.div 
                         initial={{ opacity: 0, y: 10 }}
@@ -277,8 +273,8 @@ export default function App() {
                           <h4 className="text-xs font-extrabold text-slate-800 truncate mt-0.5 whitespace-normal pr-5">
                             {item.product.name}
                           </h4>
-                          <span className="text-xs font-bold text-slate-700 block mt-1">
-                            ₹{price.toLocaleString('en-IN')}
+                          <span className="text-[10px] font-mono font-bold text-red-600 bg-red-50/50 border border-red-100/50 rounded-md px-1.5 py-0.5 mt-1 block w-max select-none">
+                            Get Query
                           </span>
 
                           {/* Quantity Controls */}
@@ -301,17 +297,14 @@ export default function App() {
                           </div>
                         </div>
 
-                        {/* Right Options (Delete & Cost) */}
-                        <div className="flex flex-col items-end justify-between h-20 shrink-0">
+                        {/* Right Options (Delete) */}
+                        <div className="flex flex-col items-end justify-between shrink-0">
                           <button
                             onClick={() => removeFromCart(item.product.id)}
                             className="p-1 hover:bg-red-50 text-slate-400 hover:text-red-600 rounded-lg transition-all cursor-pointer"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>
-                          <span className="text-[11px] font-extrabold text-slate-900 font-mono">
-                            ₹{subtotal.toLocaleString('en-IN')}
-                          </span>
                         </div>
                       </motion.div>
                     );
@@ -325,19 +318,19 @@ export default function App() {
                   {/* Total calculation */}
                   <div className="space-y-1.5 text-xs">
                     <div className="flex justify-between text-slate-500 font-semibold">
-                      <span>Showroom Items Total:</span>
-                      <span className="font-mono">₹{cartTotalPrice.toLocaleString('en-IN')}</span>
+                      <span>Total Query Items:</span>
+                      <span className="font-mono text-slate-800 font-bold">{cartTotalItems} item(s)</span>
                     </div>
                     <div className="flex justify-between text-slate-500 font-semibold items-center">
                       <span className="flex items-center gap-1 text-emerald-600">
                         <Percent className="w-3.5 h-3.5" /> Showroom Offer:
                       </span>
-                      <span className="text-emerald-600 font-extrabold">GST Compliant Quote</span>
+                      <span className="text-emerald-600 font-extrabold text-[10px] uppercase font-mono">GST-READY PRICE</span>
                     </div>
                     <div className="h-[1px] bg-slate-200/60 my-2" />
                     <div className="flex justify-between text-sm font-extrabold text-slate-900">
-                      <span>Estimated Bill Total:</span>
-                      <span className="font-mono text-red-600">₹{cartTotalPrice.toLocaleString('en-IN')}</span>
+                      <span>Official Quotation Estimate:</span>
+                      <span className="font-mono text-red-650 text-xs font-bold uppercase tracking-wide">Automated Trigger</span>
                     </div>
                   </div>
 

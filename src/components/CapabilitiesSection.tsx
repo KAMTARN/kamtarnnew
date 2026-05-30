@@ -18,7 +18,6 @@ interface CapabilitiesSectionProps {
 export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ addToCart, cart, onOpenCart }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [activePriceRange, setActivePriceRange] = useState<'All' | 'budget' | 'mid' | 'premium'>('All');
 
   // Categories list
   const categories = useMemo(() => {
@@ -32,16 +31,6 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ addToC
       // Category Match
       const matchCategory = selectedCategory === 'All' || prod.category === selectedCategory;
 
-      // Price Filter
-      let matchPrice = true;
-      if (activePriceRange === 'budget') {
-        matchPrice = prod.price <= 2000;
-      } else if (activePriceRange === 'mid') {
-        matchPrice = prod.price > 2000 && prod.price <= 10000;
-      } else if (activePriceRange === 'premium') {
-        matchPrice = prod.price > 10000;
-      }
-
       // Search Match
       const searchStr = searchTerm.toLowerCase();
       const matchSearch = 
@@ -51,9 +40,9 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ addToC
         prod.description.toLowerCase().includes(searchStr) ||
         prod.specifications.some(spec => spec.toLowerCase().includes(searchStr));
 
-      return matchCategory && matchPrice && matchSearch;
+      return matchCategory && matchSearch;
     });
-  }, [searchTerm, selectedCategory, activePriceRange]);
+  }, [searchTerm, selectedCategory]);
 
   // Helper check to see if item is in cart
   const getCartQuantity = (productId: string) => {
@@ -108,36 +97,11 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ addToC
             </div>
           </div>
 
-          {/* Sub-Filters: Price Tiers & Live Search */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pt-4 border-t border-slate-200/60">
+          {/* Sub-Filters: Live Search */}
+          <div className="flex flex-col md:flex-row md:items-center justify-end gap-6 pt-4 border-t border-slate-200/60">
             
-            {/* Price Filter Capsules */}
-            <div className="flex flex-col gap-2 text-left">
-              <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest">
-                Filter by Price Tier
-              </span>
-              <div className="flex gap-1.5 flex-wrap">
-                {(['All', 'budget', 'mid', 'premium'] as const).map((tier) => {
-                  const labels = { All: "All Prices", budget: "Budget (< ₹2,000)", mid: "Mid-Range (₹2,000 - ₹10,000)", premium: "Premium (> ₹10,000)" };
-                  return (
-                    <button
-                      key={tier}
-                      onClick={() => setActivePriceRange(tier)}
-                      className={`px-3 py-1.5 text-[11px] font-medium rounded-md cursor-pointer transition-colors ${
-                        activePriceRange === tier
-                          ? 'bg-slate-900 text-white'
-                          : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-                      }`}
-                    >
-                      {labels[tier]}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
             {/* Live Search */}
-            <div className="flex flex-col gap-2 w-full md:w-80 text-left">
+            <div className="flex flex-col gap-2 w-full md:w-96 text-left">
               <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest">
                 Search In-Stock Items
               </span>
@@ -275,15 +239,13 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ addToC
                     {/* Price and Cart controls */}
                     <div className="flex items-center justify-between gap-2.5 pt-2 border-t border-slate-150">
                       
-                      {/* Price Section */}
+                      {/* Price Section replaced with Get Query */}
                       <div className="flex flex-col text-left">
-                        {prod.discountPrice && (
-                          <span className="text-[10px] text-slate-400 font-mono font-bold line-through">
-                            ₹{prod.discountPrice.toLocaleString('en-IN')}
-                          </span>
-                        )}
-                        <span className="text-sm sm:text-base font-black text-slate-900 font-mono leading-none">
-                          ₹{prod.price.toLocaleString('en-IN')}
+                        <span className="text-[10px] text-slate-400 font-mono font-bold leading-none">
+                          PRICE STATUS
+                        </span>
+                        <span className="text-[11px] sm:text-xs font-bold text-red-650 bg-red-50 border border-red-100 px-2 py-1 rounded-md mt-1 select-none font-mono tracking-wide">
+                          Get Query
                         </span>
                       </div>
 
@@ -295,7 +257,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ addToC
                             className="px-3 py-2 bg-slate-900 text-white hover:bg-slate-850 rounded-xl text-[10px] font-bold text-center flex items-center justify-center gap-1 cursor-pointer transition-all uppercase tracking-wide shrink-0 border border-slate-900 shadow-sm"
                           >
                             <ShoppingCart className="w-3.5 h-3.5 text-red-500" />
-                            <span>In Basket ({inCartQty})</span>
+                            <span>In Inquiry ({inCartQty})</span>
                           </button>
                           <button
                             onClick={() => addToCart(prod)}
@@ -308,14 +270,14 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ addToC
                         <button
                           onClick={() => addToCart(prod)}
                           disabled={prod.stockStatus === 'Out of Stock'}
-                          className={`px-3.5 py-2.5 text-[11px] font-extrabold uppercase tracking-wider rounded-xl cursor-pointer transition-all shrink-0 flex items-center gap-1.5 shadow-sm hover:scale-[1.02] active:scale-95 duration-200 ${
+                          className={`px-3.5 py-2.5 text-[11px] font-extrabold uppercase tracking-wider rounded-xl cursor-pointer transition-all shrink-0 flex items-center gap-1.5 shadow-sm hover:scale-[1.02] active:scale-95 duration-250 ${
                             prod.stockStatus === 'Out of Stock'
                               ? 'bg-slate-200 text-slate-400 cursor-not-allowed shadow-none'
                               : 'bg-red-650 hover:bg-red-600 text-white bg-red-600 shadow-red-600/10'
                           }`}
                         >
                           <ShoppingBag className="w-3.5 h-3.5" />
-                          <span>Add to Cart</span>
+                          <span>Add to Query</span>
                         </button>
                       )}
 
@@ -333,10 +295,10 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ addToC
               <ShoppingCart className="w-10 h-10 text-slate-300 mb-3 animate-bounce" />
               <p className="text-sm font-bold text-slate-700">No products matching your search criteria</p>
               <p className="text-xs text-slate-400 mt-1 max-w-sm">
-                Try searching general categories like "SSD", "Laptop", "Mouse", or modifying your price tier tags.
+                Try searching general categories like "SSD", "Laptop", "Mouse", or modifying filters.
               </p>
               <button
-                onClick={() => { setSearchTerm(''); setSelectedCategory('All'); setActivePriceRange('All'); }}
+                onClick={() => { setSearchTerm(''); setSelectedCategory('All'); }}
                 className="mt-5 px-4 py-2 bg-red-600 text-white rounded-lg text-xs font-bold uppercase tracking-wider shadow-md hover:bg-red-500 transition-colors cursor-pointer"
               >
                 Reset Search Filters

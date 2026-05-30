@@ -549,6 +549,75 @@ export const RETAIL_PRODUCTS: ProductItem[] = [
     icon: "Lock",
     badge: "Office Essential",
     isPopular: false
+  },
+  {
+    id: "prod-dell-ultrasharp",
+    name: "Dell UltraSharp 27\" 4K USB-C Hub Monitor",
+    brand: "Dell",
+    category: "Laptops & Desktops",
+    subcategory: "Professional IPS Displays",
+    description: "Designed for premium color accuracy and multi-monitor setups. Features IPS Black technology, stellar contrast ratio, 100% sRGB color output depth, and a high-power 90W USB-C hub connectivity setup.",
+    price: 38900,
+    discountPrice: 45000,
+    specifications: [
+      "27-inch 4K UHD (3840 x 2160) Active IPS Black Display",
+      "USB-C Hub with 90W Power Delivery and RJ45 Ethernet",
+      "98% DCI-P3 and 100% sRGB Factory-Calibrated Profile",
+      "VESA DisplayHDR 400 for stunning high-dynamic contrast",
+      "Fully adjustable ergonomic stand with tilt, pivot, and swivel"
+    ],
+    stockStatus: "In Stock",
+    rating: 4.8,
+    reviewsCount: 95,
+    icon: "Monitor",
+    badge: "Designer Pick",
+    isPopular: true
+  },
+  {
+    id: "prod-lg-ultragear",
+    name: "LG UltraGear 24\" 144Hz Gaming Monitor",
+    brand: "LG",
+    category: "IT Accessories",
+    subcategory: "High-Refresh Gaming Displays",
+    description: "Built for competitive high-frequency gaming action. Hosts ultra-responsive 1ms motion blur settings, AMD FreeSync premium sync filters, and customized crosshair targeting HUD overlay integrations.",
+    price: 13499,
+    discountPrice: 17500,
+    specifications: [
+      "24-inch Full HD (1920 x 1080) IPS borderless layout",
+      "Ultra-smooth 144Hz Refresh Rate with 1ms MBR response",
+      "AMD FreeSync Premium and Nvidia G-Sync compatibility",
+      "Dynamic Action Sync and custom Black Stabilizer exposure",
+      "DisplayPort and dual HDMI digital terminal connectors"
+    ],
+    stockStatus: "In Stock",
+    rating: 4.7,
+    reviewsCount: 148,
+    icon: "Monitor",
+    badge: "Gamers Top Choice",
+    isPopular: true
+  },
+  {
+    id: "prod-samsung-odyssey",
+    name: "Samsung Odyssey G5 WQHD Curved Monitor",
+    brand: "Samsung",
+    category: "Retail Electronics",
+    subcategory: "Curved Display Panels",
+    description: "Unparalleled immersion matching the curvature of the human eye. Boasts native WQHD detail sharpness, hyper-responsive 165Hz playback, and robust HDR10 screen contrast ratios.",
+    price: 22999,
+    discountPrice: 28000,
+    specifications: [
+      "27-inch WQHD (2560 x 1440) high-definition 1000R Curve panel",
+      "Rapid 165Hz Refresh Rate & 1ms MPRT Response Speed",
+      "HDR10 Premium high contrast for high visual fidelity",
+      "Eye Saver Mode with Flicker-Free shield protection tech",
+      "AMD FreeSync Premium frame-tearing suppression system"
+    ],
+    stockStatus: "Low Stock",
+    rating: 4.6,
+    reviewsCount: 79,
+    icon: "Monitor",
+    badge: "Best Seller",
+    isPopular: false
   }
 ];
 
@@ -558,13 +627,13 @@ export const BRANCHES: BranchOffice[] = [
     name: `${COMPANY_NAME} - Corporate Showroom & HQ`,
     address: "2nd floor, Room No B7, Central Plazza, 41 B B Ganguly Street, Kolkata, West Bengal, 700012",
     phone: "+91 70619 91192",
-    email: "kamtarninfocomindia@gmail.com"
+    email: "info@kamtarn.com"
   },
   {
     type: "Branch Office",
     name: `${COMPANY_NAME} - Dhanbad Showroom & Diagnostics`,
     address: "Shop No 8, Textile Market, Bank More, Dhanbad, Jharkhand, 826001",
     phone: "+91 70619 91192",
-    email: "kamtarninfocomindia@gmail.com"
+    email: "info@kamtarn.com"
   }
 ];

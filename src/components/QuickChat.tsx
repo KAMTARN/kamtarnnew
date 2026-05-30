@@ -14,7 +14,7 @@ export const QuickChat: React.FC = () => {
 
   // Sourcing info
   const phoneNumber = '917061991192'; // Country code +91
-  const emailAddress = 'kamtarninfocomindia@gmail.com';
+  const emailAddress = 'info@kamtarn.com';
 
   const templates = [
     { label: "Check Stock", text: "Hello Kamtarn Infocom, I am interested in checking the stock availability of certain laptops and storage accessories. Please guide me." },

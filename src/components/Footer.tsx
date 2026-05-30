@@ -46,9 +46,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <Phone className="w-4 h-4 text-red-500 shrink-0" />
               <span>+91 70619 91192</span>
             </a>
-            <a href="mailto:kamtarninfocomindia@gmail.com" className="flex items-center gap-2 hover:text-white transition-colors">
+            <a href="mailto:info@kamtarn.com" className="flex items-center gap-2 hover:text-white transition-colors">
               <Mail className="w-4 h-4 text-red-500 shrink-0 font-mono" />
-              <span>kamtarninfocomindia@gmail.com</span>
+              <span>info@kamtarn.com</span>
             </a>
           </div>
         </div>

@@ -97,6 +97,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({
       console.error(err);
     }
 
+    // Automatically trigger mail client to info@kamtarn.com with inquiry details
+    const emailSubject = `Inquiry ${ticketId} (${category}) - ${name}`;
+    const emailBody = `Reference Ticket ID: ${ticketId}\nName: ${name}\nEmail: ${email}\nPhone: ${phone || 'N/A'}\nCompany/Institution: ${company || 'N/A'}\nSegment/Category: ${category}\n\nInquiry Message:\n${message}\n\n--\nGenerated automatically via Kamtarn Infocom Retail Portal.`;
+    
+    const mailtoUrl = `mailto:info@kamtarn.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    window.open(mailtoUrl, '_blank');
+
     setLastTicketId(ticketId);
     setIsSubmitted(true);
     clearCart();
