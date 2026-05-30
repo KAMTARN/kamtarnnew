@@ -627,13 +627,13 @@ export const BRANCHES: BranchOffice[] = [
     name: `${COMPANY_NAME} - Corporate Showroom & HQ`,
     address: "2nd floor, Room No B7, Central Plazza, 41 B B Ganguly Street, Kolkata, West Bengal, 700012",
     phone: "+91 70619 91192",
-    email: "info@kamtarn.com"
+    email: "info@kamtarn.com / kamtarninfocom@gmail.com"
   },
   {
     type: "Branch Office",
     name: `${COMPANY_NAME} - Dhanbad Showroom & Diagnostics`,
     address: "Shop No 8, Textile Market, Bank More, Dhanbad, Jharkhand, 826001",
     phone: "+91 70619 91192",
-    email: "info@kamtarn.com"
+    email: "info@kamtarn.com / kamtarninfocom@gmail.com"
   }
 ];

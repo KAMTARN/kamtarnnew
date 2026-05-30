@@ -112,8 +112,8 @@ export default function App() {
     
     setPrefilledMessage(message);
 
-    // Auto trigger mail client
-    const mailtoUrl = `mailto:info@kamtarn.com?subject=${encodeURIComponent("Showroom Stock & Custom Quotation Inquiry")}&body=${encodeURIComponent(message)}`;
+    // Auto trigger mail client to both addresses
+    const mailtoUrl = `mailto:info@kamtarn.com,kamtarninfocom@gmail.com?subject=${encodeURIComponent("Showroom Stock & Custom Quotation Inquiry")}&body=${encodeURIComponent(message)}`;
     window.open(mailtoUrl, '_blank');
     
     // Smooth scroll to the contact form section

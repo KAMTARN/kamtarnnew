@@ -14,7 +14,7 @@ export const QuickChat: React.FC = () => {
 
   // Sourcing info
   const phoneNumber = '917061991192'; // Country code +91
-  const emailAddress = 'info@kamtarn.com';
+  const emailAddresses = 'info@kamtarn.com,kamtarninfocom@gmail.com';
 
   const templates = [
     { label: "Check Stock", text: "Hello Kamtarn Infocom, I am interested in checking the stock availability of certain laptops and storage accessories. Please guide me." },
@@ -39,7 +39,7 @@ export const QuickChat: React.FC = () => {
     const finalMsg = message.trim() || "Hello Kamtarn Infocom sales team! I have an inquiry about your IT products.";
     const subject = encodeURIComponent("Quick Inquiry from Kamtarn Infocom Website");
     const body = encodeURIComponent(finalMsg);
-    const url = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
+    const url = `mailto:${emailAddresses}?subject=${subject}&body=${body}`;
     window.open(url, '_blank');
   };
 

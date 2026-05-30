@@ -72,6 +72,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, activeSection, cartC
               <Mail className="w-3.5 h-3.5 text-red-500" />
               info@kamtarn.com
             </a>
+            <span className="text-slate-600">|</span>
+            <a href="mailto:kamtarninfocom@gmail.com" className="flex items-center gap-1.5 hover:text-white transition-colors duration-200">
+              <Mail className="w-3.5 h-3.5 text-red-500" />
+              kamtarninfocom@gmail.com
+            </a>
           </div>
         </div>
       </div>
@@ -221,6 +226,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, activeSection, cartC
                 <span className="flex items-center gap-2 mt-1">
                   <Mail className="w-4 h-4 text-red-100 font-mono" />
                   info@kamtarn.com
+                </span>
+                <span className="flex items-center gap-2 mt-1">
+                  <Mail className="w-4 h-4 text-red-100 font-mono" />
+                  kamtarninfocom@gmail.com
                 </span>
               </div>
               <button

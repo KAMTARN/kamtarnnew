@@ -50,6 +50,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <Mail className="w-4 h-4 text-red-500 shrink-0 font-mono" />
               <span>info@kamtarn.com</span>
             </a>
+            <a href="mailto:kamtarninfocom@gmail.com" className="flex items-center gap-2 hover:text-white transition-colors">
+              <Mail className="w-4 h-4 text-red-500 shrink-0 font-mono" />
+              <span>kamtarninfocom@gmail.com</span>
+            </a>
           </div>
         </div>
 
